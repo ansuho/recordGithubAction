@@ -2,7 +2,7 @@ name: helloGithubAction
 
 on:
   schedule:
-    - cron: "*/60 * * * *"
+    - cron: "*/360 * * * *"
 
 jobs:
   build:
