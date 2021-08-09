@@ -1,21 +1,29 @@
 name: helloGithubAction
 
-on:
-  schedule:
-    - cron: "*/0 6 * * *"
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: 1. 파일 목록 출력
-      run: ls -al
-    - name: 2. 파이썬 패키지 확인
-      run: pip list
-    - name: 3. pip 업그레이드
+      with:
+        # 개인 토큰을 사용할 것인지 말 것인지
+        persist-credentials: false 
+    - name: 1. pip 업그래이드
       run: python -m pip install --upgrade pip
-    - name: 4. 필요한 패키지 인스톨
+    - name: 2. 환경 설정
       run: pip install -r requirements.txt
-    - name: 5. 파이썬 실행!!
+    - name: 3. 파이썬 실행
       run: python test.py
+    - name: Commit files
+      run: |
+        git config --local user.email "paullabkorea@gmail.com"
+        git config --local user.name "paullabkorea"
+        git add .
+        git commit -m "Run crawler and update current data"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        # branch: "master"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
