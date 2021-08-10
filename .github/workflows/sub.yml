@@ -13,4 +13,3 @@ jobs:
         ID: ${{ github.actor }}
       run: |
       echo "내 이름은 $NAME 입니다."
-      echo "내 이름은 $NAME, 내 아이디는 $ID 입니다."
