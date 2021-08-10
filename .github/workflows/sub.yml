@@ -10,7 +10,10 @@ jobs:
     - name: 1. 변수출력
       env:
         NAME: 'suho.an'
+        AGE: 45
+        HUMAN : true
         ID: ${{ github.actor }}
       run: |
         echo "내 이름은 $NAME 입니다."
         echo "내 이름은 $NAME, 내 아이디는 $ID 입니다."
+        echo "내 이름은 $NAME, 내 아이디는 $ID 입니다. 제 나이는 $AGE  이고, 휴먼 : $HUMAN 입니다"
